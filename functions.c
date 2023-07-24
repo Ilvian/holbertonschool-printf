@@ -5,7 +5,7 @@
  */
 int print_char (va_list list)
 {
-	char x = va_argc(list, int);
+	char x = va_arg(list, int);
 	putchar(x);
 	return (1);
 }

@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stdarg.h>
 /**
  *struct print_func - function that produces output according to a format
  *@format: input
