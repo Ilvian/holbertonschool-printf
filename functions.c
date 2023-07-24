@@ -14,8 +14,16 @@ int print_char (va_list list)
  */
 int print_string(va_list string_list)
 {
+	char *s = va_arg(list, char *);
+	int i = 0;
 	
-}
+	while (s[i] != '\0')
+	{
+		putchar(s[i]);
+		i++;
+	}
+	return (i);
+}	
 
 /**
  */
