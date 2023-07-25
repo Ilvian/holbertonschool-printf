@@ -1,49 +1,47 @@
-#include <stdarg.h>
 #include "main.h"
-
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
 /**
- *_printf - prints to output according to format
- *@format: character string
- *Return: number of characters printed
+ *_printf - function that produces output according to a format
+ *@format: format to be used to print the output
+ *Return: the number of characters printed
  */
 
 int _printf(const char *format, ...)
 {
-	int printed_chars = 0;
-    char ch, c, *s;
-
 	va_list args;
-    va_start(args, format);
-    while ((ch = *format++) != '\0') {
-        if (ch != '%') {
-            putchar(ch);
-            printed_chars++;
-        } else {
-            ch = *format++;
-            switch (ch) {
-                case '%':
-                    putchar('%');
-                    printed_chars++;
-                    break;
-                case 'c': ;
-                    c = va_arg(args, int);
-                    putchar(c);
-                    printed_chars++;
-                    break;
-                case 's': ;
-                    s = va_arg(args, char*);
-                    while (*s) {
-                        putchar(*s++);
-                        printed_chars++;
-                    }
-                    break;
-                default:
-                    va_end(args);
-                    return -1;
-            }
-        }
-    }
+	int i = 0;
+	int (*func)(va_list);
+	int count = 0;
+	int length;
 
-    va_end(args);
-    return printed_chars;
+	if (format != NULL)
+	{
+		length = strlen(format);
+		if ((length != 1) || (format[0] != '%'))
+			{
+			va_start(args, format);
+			while (format[i] != '\0')
+			{
+				if (format[i] == '%')
+				{
+					func = get_function(format[i + 1]);
+					if (func)
+					{
+						count += func(args);
+						i += 2;
+						continue;
+					}
+					else if (format[i + 1] == '%')
+						i++;
+				}
+				putchar(format[i]);
+				i++;
+				count++;
+			}
+		return (count);
+		}
+	}
+	return (-1);
 }

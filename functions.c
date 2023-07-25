@@ -7,9 +7,9 @@
  */
 int print_char(va_list list)
 {
-	char c = va_arg(list, int);
+	char temp = va_arg(list, int);
 
-	putchar(c);
+	putchar(temp);
 	return (1);
 }
 
@@ -18,53 +18,67 @@ int print_char(va_list list)
  *@list: list of arguments
  *Return: length of the string
  */
+
 int print_string(va_list list)
 {
+	char *temp = va_arg(list, char *);
 	int i = 0;
-	char *str = va_arg(list, char*);
+	int length = 0;
+	char *nul = "(null)";
 
-	if (str == NULL)
-		str = "(null)";
-	while (str[i] != '\0')
+	if (temp)
 	{
-		putchar(str[i]);
+	while (temp[i] != '\0')
+	{
+		putchar(temp[i]);
+		length++;
 		i++;
 	}
-	return (i);
+	}
+	else
+	{
+		while (nul[i] != '\0')
+		{
+			putchar(nul[i]);
+			length++;
+			i++;
+		}
+	}
+
+
+	return (length);
 }
 
 /**
- * print_int - prints integer from va_list as a string
- *@list: list of arguments
- *Return: length of numbers
+ * print_int - prints an int from va_list
+ * @list: list of arguments
+ * Return: length of the int
  */
+
 int print_int(va_list list)
 {
-	int n = va_arg(list, int);
-	int digit = 0;
-	int x = n;
+	long int number = (long int) va_arg(list, int);
+	long int l = 1;
+	long int t = number;
+	int r = 1;
 
-	if (n < 0)
+	if (number < 0)
 	{
 		putchar('-');
-		n = -n;
+		r++;
+		t = t * -1;
+		number = number * -1;
 	}
-	if (n == 0)
+	while (t > 9)
 	{
-		putchar('0');
-		return (1);
+		t = t / 10;
+		l = l * 10;
+		r++;
 	}
-
-	while (x > 0)
+	while (l > 0)
 	{
-		x /= 10;
-		digit++;
+		putchar('0' + (number / l) % 10);
+		l = l / 10;
 	}
-	while (n > 0)
-	{
-		digit = n % 10;
-		putchar('0' + digit);
-		n /= 10;
-	}
-	return (digit);
+	return (r);
 }
