@@ -1,19 +1,23 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
+#include <stdio.h>
 /**
- *struct print_func - function that produces output according to a format
- *@format: input
- *@print: input
+ * *struct Print - struct print
+ *@id: identifier of the function
+ *@print: function associated with the identifier
  */
+
 typedef struct print_func
 {
-	char *format;
+	char *id;
 	int (*print)(va_list list);
 } print_func;
-int print_char (va_list char_list);
-int print_string(va_list string_list);
-int print_int (va_list int_list);
-int print_float (va_list float_list);
+
 int _printf(const char *format, ...);
+int print_char(va_list list);
+int print_string(va_list list);
+int print_int(va_list list);
+int print_float(va_list list);
+int (*get_function(char c))(va_list);
 #endif
