@@ -1,0 +1,54 @@
+PRINTF(3)                   BSD Library Functions Manual                   PRINTF(3)
+
+NAME
+     printf, fprintf, sprintf, snprintf, asprintf, dprintf -- formatted output conversion
+
+SYNOPSIS
+     #include <stdio.h>
+
+     int
+     printf(const char *restrict format, ...);
+
+DESCRIPTION
+     The printf() function produces output according to a format as described below.
+
+     The printf() functions return the number of characters printed, or a negative value if an output error occurs.
+
+     The format string is a character string, beginning and ending in its initial shift state, if any.  The format string is composed of zero or more directives: ordinary characters (not %), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments.
+
+CONVERSION SPECIFICATIONS
+     A conversion specification consists of a %, an optional flag, an optional width or precision, and a conversion specifier.
+
+     The conversion specifiers and their meanings are:
+
+     d, i   The int argument is converted to signed decimal notation.
+
+     o, u, x, X
+            The unsigned int argument is converted to unsigned octal (o),
+            unsigned decimal (u), or unsigned hexadecimal (x and X) notation.
+
+     c      The int argument is converted to an unsigned char.
+
+     s      The const char * argument is expected to be a pointer to an array of character type.
+
+     f, F   The double argument is output in decimal notation.
+
+     p      The void * pointer argument is printed in hexadecimal.
+
+     %      A % is written. No argument is converted. 
+
+EXAMPLES
+     The following example prints the number of arguments provided:
+
+           #include <stdio.h>
+
+           int main(int argc, char *argv[]) {
+               printf("%d\n", argc);
+               return 0;
+           }
+
+SEE ALSO
+     scanf(3), sprintf(3), sscanf(3), vprintf(3), vscanf(3)
+
+BSD                            September 28, 2004                           BSD
+Please note that this is a simplified version of the printf man page and does not contain 
