@@ -4,7 +4,6 @@
 /**
  *_printf - prints to output according to format
  *@format: character string
- *
  *Return: number of characters printed
  */
 
@@ -15,13 +14,11 @@ int _printf(const char *format, ...)
 	int i, j;
 
 	print_func p_func[] = {
-		{"c",print_char},
-		{"s", print_string},
-		{NULL, NULL}
+		{"c", print_char}, {"s", print_string}, {NULL, NULL}
 	};
 	va_start(list, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-                return (0);
+		return (0);
 	i = 0;
 	while (format != NULL && format[i] != '\0')
 	{
@@ -31,17 +28,13 @@ int _printf(const char *format, ...)
 			while (p_func->id != NULL)
 			{
 				if (format[i + 1] == p_func->id[0])
-				{
-					char_count += p_func[j].print(list);
-					i++;
-				}
+					char_count += p_func[j].print(list), i++;
 				j++;
 			}
 		}
 		else if (format[i] == '%' && format[i + 1] == '%')
 		{
-			putchar ('%');
-			i++;
+			putchar ('%'), i++;
 			char_count += 1;
 		}
 		else
