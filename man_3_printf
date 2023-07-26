@@ -39,3 +39,7 @@ The number of characters printed (excluding tha null byte used to end output to 
 
 .SH SEE ALSO
 printf(3)
+
+.B ID & EL
+
+.SH COPYRIGHT
