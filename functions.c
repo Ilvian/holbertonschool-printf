@@ -82,3 +82,11 @@ int print_int(va_list list)
 	}
 	return (r);
 }
+
+/**
+ * print_unsigned_int - prints an unsigned int from va_list
+ * @list: list of arguments
+ * Return: length of unsigned int
+ */
+int print_binary(va_list list)
+{
