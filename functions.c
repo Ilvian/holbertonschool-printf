@@ -88,5 +88,3 @@ int print_int(va_list list)
  * @list: list of arguments
  * Return: length of unsigned int
  */
-int print_binary(va_list list)
-{

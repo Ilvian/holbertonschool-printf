@@ -15,7 +15,6 @@ int (*get_function(char c))(va_list)
 		{"s", print_string},
 		{"i", print_int},
 		{"d", print_int},
-		{"b", print_binary},
 		{NULL, NULL}
 	};
 
